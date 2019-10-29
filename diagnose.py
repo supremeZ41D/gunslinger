@@ -334,12 +334,12 @@ class exec_dhcp_clear:
     def __init__(self, sshclient):
         self.sshclient=sshclient
 
-    def set(self, vdom=None):
+    def set(self, vdom=None, flt='all'):
 
         if not vdom:
-            paramlist=['execute dhcp lease-clear']
+            paramlist=['execute dhcp lease-clear {}'.format(flt)]
         elif validation.vdomval(self.sshclient,vdom):
-            paramlist=['config vdom','edit {}'.format(vdom),'execute dhcp lease-clear']
+            paramlist=['config vdom','edit {}'.format(vdom),'execute dhcp lease-clear {}'.format(flt)]
 
         try:
             commit(self.sshclient,paramlist)
