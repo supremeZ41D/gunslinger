@@ -328,3 +328,20 @@ class firewall_iprope:
             return storeprint(self.sshclient,paramlist,option)
         except:
             print('Incorrect VDOM/GLOBAL!')
+
+class exec_dhcp_clear:
+
+    def __init__(self, sshclient):
+        self.sshclient=sshclient
+
+    def set(self, vdom=None):
+
+        if not vdom:
+            paramlist=['execute dhcp lease-clear']
+        elif validation.vdomval(self.sshclient,vdom):
+            paramlist=['config vdom','edit {}'.format(vdom),'execute dhcp lease-clear']
+
+        try:
+            commit(self.sshclient,paramlist)
+        except:
+            print('Incorrect VDOM/GLOBAL!')
