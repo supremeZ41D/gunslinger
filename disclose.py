@@ -1,5 +1,3 @@
-import paramiko
-import re
 from gunslinger import validation
 
 def vdomfunc(sshclient, vdom, precomm, command):
@@ -247,10 +245,7 @@ class show:
         command="""show firewall address {}
         """.format(flt)
 
-        if not flt:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        else:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)
 
     def firewall_vip(self, vdom=None, flt='', option='print'):
@@ -260,10 +255,7 @@ class show:
         command="""show firewall vip {}
         """.format(flt)
 
-        if not flt:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        else:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)
 
     def firewall_group(self, vdom=None, flt='', option='print'):
@@ -273,10 +265,7 @@ class show:
         command="""show firewall addrgrp {}
         """.format(flt)
 
-        if not flt:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        else:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)
 
     def user_local(self, vdom=None, flt='', option='print'):
@@ -299,17 +288,14 @@ class show:
         stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)
 
-    def vpn_phase1(self, vdom=None, flt='', option='print'):
+    def ssl_vpn_settings(self, vdom=None, flt='', option='print'):
         precomm="""config vdom
         edit {}
         """.format(vdom)
-        command="""show vpn ssl setttings {}
+        command="""show vpn ssl settings {}
         """.format(flt)
 
-        if not flt:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        else:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)
 
     def vpn_phase1(self, vdom=None, flt='', option='print'):
@@ -319,10 +305,7 @@ class show:
         command="""show vpn ipsec phase1-interface {}
         """.format(flt)
 
-        if not flt:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        else:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)
 
     def vpn_phase2(self, vdom=None, flt='', option='print'):
@@ -332,8 +315,5 @@ class show:
         command="""show vpn ipsec phase2-interface {}
         """.format(flt)
 
-        if not flt:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        else:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout, option)

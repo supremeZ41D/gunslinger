@@ -1,4 +1,3 @@
-import paramiko
 import re
 
 def globval(sshclient):
@@ -19,7 +18,7 @@ def vdomval(sshclient, vdom):
     stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if vdom==None:
-            print('Please specify a VDOM!')
+            raise RuntimeError('VDOM can\'t be NoneType')
     else:
         for i in stdout.readlines():
             if re.match(r'.+(edit \"'+vdom+'\")',i, flags=0):
@@ -37,7 +36,7 @@ def adminval(sshclient, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-            print('Please specify a ADMIN USER!')
+            raise RuntimeError('NAME can\'t be NoneType')
     else:
         for i in stdout.readlines():
             if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
@@ -55,7 +54,7 @@ def intval(sshclient, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-        print('Please specify an interface name!')
+        raise RuntimeError('NAME can\'t be NoneType')
     else:
         for i in stdout.readlines():
             if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
@@ -74,7 +73,7 @@ def policyval(sshclient, vdom, edit):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if edit==None:
-        print('Please specify an address name!')
+        raise RuntimeError('EDIT can\'t be NoneType')
     for i in stdout.readlines():
         if re.match(r'.+(edit \"'+edit+'\")',i, flags=0):
             return True
@@ -92,7 +91,7 @@ def addrval(sshclient, vdom, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-        print('Please specify an address name!')
+        raise RuntimeError('NAME can\'t be NoneType')
     for i in stdout.readlines():
         if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
             return True
@@ -110,7 +109,7 @@ def addrgrpval(sshclient, vdom, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-        print('Please specify an address name!')
+        raise RuntimeError('NAME can\'t be NoneType')
     for i in stdout.readlines():
         if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
             return True
@@ -128,7 +127,7 @@ def srvval(sshclient, vdom, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-        print('Please specify an service name!')
+        raise RuntimeError('NAME can\'t be NoneType')
     for i in stdout.readlines():
         if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
             return True
@@ -146,7 +145,7 @@ def phase1val(sshclient, vdom, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-        print('Please specify a Phase1 name!')
+        raise RuntimeError('NAME can\'t be NoneType')
     for i in stdout.readlines():
         if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
             return True
@@ -164,7 +163,7 @@ def phase2val(sshclient, vdom, name):
         stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
     if name==None:
-        print('Please specify a Phase2 name!')
+        raise RuntimeError('NAME can\'t be NoneType')
     for i in stdout.readlines():
         if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
             return True
