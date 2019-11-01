@@ -1,5 +1,3 @@
-import paramiko
-import re
 from gunslinger import validation
 
 def commit(sshclient, paramlist):
@@ -63,9 +61,9 @@ class sys_session:
 
     def clear_all():
 
-        set_src=None
-        set_dst=None
-        set_dport=None
+        sys_session.set_src=None
+        sys_session.set_dst=None
+        sys_session.set_dport=None
 
     def set(self, vdom=None, flt=''):
 
@@ -105,9 +103,9 @@ class exec_ping:
 
     def clear_all():
 
-        set_src=None
-        set_repeat=None
-        set_size=None
+        exec_ping.set_src=None
+        exec_ping.set_repeat=None
+        exec_ping.set_size=None
 
     def set(self, dst, vdom=None):
 
@@ -228,7 +226,7 @@ class auth_test:
     def __init__(self, sshclient):
         self.sshclient=sshclient
 
-    def set(self, vdom=None, method=None, server_name=None, username=None, password=None, *args):
+    def set(self, *args, vdom=None, method=None, server_name=None, username=None, password=None):
 
         if not method or not server_name or not username or not password:
             print('METHOD, SERVER_NAME, USERNAME and PASSWORD have to be filled out!')
@@ -276,7 +274,7 @@ class dhcp_list:
 
     def clear_all():
 
-        set_interface=None
+        dhcp_list.set_interface=None
 
     def set(self, vdom=None,  flt=''):
 
