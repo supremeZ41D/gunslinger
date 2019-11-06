@@ -228,7 +228,7 @@ class firewall_address:
                 'type': firewall_address.set_type,
                 'fqdn': firewall_address.set_fqdn,
                 'subnet': firewall_address.set_subnet,
-                'route': firewall_address.set_route,
+                'allow-routing': firewall_address.set_route,
                 'comment': firewall_address.set_comment
                 }
 
