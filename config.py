@@ -229,7 +229,8 @@ class firewall_address:
                 'fqdn': firewall_address.set_fqdn,
                 'subnet': firewall_address.set_subnet,
                 'allow-routing': firewall_address.set_route,
-                'comment': firewall_address.set_comment
+                'comment': firewall_address.set_comment,
+                'status': firewall_address.set_status
                 }
 
             if option=='edit':
