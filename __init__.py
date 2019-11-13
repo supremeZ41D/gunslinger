@@ -1,1 +1,1 @@
-from gunslinger import disclose, manage, config, diagnose, validation, firewallDB, wfDB_60x
+from gunslinger import disclose, manage, config, diagnose, validation, firewallDB, wfDB_60x, pipefw

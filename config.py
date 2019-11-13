@@ -7,8 +7,14 @@ def fwscript_txt(sshclient, path='C:/Users/omar.brito/Documents/Python_Security_
     print('SCRIPT PUSHED!')
     txfile.close()
 
-def fwscript_cli(sshclient, script):
-    stdin,stdout,stderr=sshclient.exec_command(script)
+def fwscript_cli(sshclient, script, vdom=None):
+    if not validation.globval(sshclient):
+        if vdom and validation.vdomval(sshclient,vdom):
+            stdin,stdout,stderr=sshclient.exec_command('config vdom\nedit {}\n'.format(vdom)+script)
+        else:
+            raise RuntimeError('VDOM can\'t be NoneType')
+    else:
+        stdin,stdout,stderr=sshclient.exec_command(script)
     print('SCRIPT PUSHED!')
 
 def commit(sshclient, paramlist):
