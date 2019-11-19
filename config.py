@@ -145,6 +145,7 @@ class router_static:
     set_status='enable'
     set_edit=None
     set_dst=None
+    set_dstaddr=None
     set_gateway=None
     set_device=None
     set_distance=None
@@ -158,6 +159,7 @@ class router_static:
         router_static.set_status=None
         router_static.set_edit=None
         router_static.set_dst=None
+        router_static.set_dstaddr=None
         router_static.set_gateway=None
         router_static.set_device=None
         router_static.set_distance=None
@@ -171,6 +173,7 @@ class router_static:
             params= {
                 'status': router_static.set_status,
                 'dst': router_static.set_dst,
+                'dstaddr': router_static.set_dstaddr,
                 'gateway': router_static.set_gateway,
                 'device': router_static.set_device,
                 'distance': router_static.set_distance,
@@ -276,6 +279,7 @@ class firewall_addrgrp:
     set_name=None
     set_member=None
     set_comment=None
+    set_route=None
 
     def __init__(self, sshclient):
         self.sshclient=sshclient
@@ -285,14 +289,16 @@ class firewall_addrgrp:
         firewall_addrgrp.set_name=None
         firewall_addrgrp.set_member=None
         firewall_addrgrp.set_comment=None
+        firewall_addrgrp.set_route=None
 
     def preview(self, action='set', vdom=None, option='edit'):
-        if not firewall_address.set_name:
+        if not firewall_addrgrp.set_name:
             print('PLEASE ENTER AN NAME VALUE!')
         else:
             params= {
                 'member': firewall_addrgrp.set_member,
-                'comment': firewall_addrgrp.set_comment
+                'comment': firewall_addrgrp.set_comment,
+                'allow-routing': firewall_addrgrp.set_route
                 }
 
             if option=='edit':
