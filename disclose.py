@@ -282,11 +282,21 @@ class show:
         precomm="""config vdom
         edit {}
         """.format(vdom)
-        command="""show user local {}
-        """.format(flt)
+        if type(flt) is str:
+            command="""show user local {}
+            """.format(flt)
 
-        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        return storeprint(stdout, option)
+            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+            return storeprint(stdout, option)
+        elif type(flt) is list:
+            listout=[]
+            for i in flt:
+                command="""show user local {}
+                """.format(i)
+                #print(i)
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+                listout+=stdout
+            return storeprint(listout, option)
 
     def user_group(self, vdom=None, flt='', option='print'):
         precomm="""config vdom
