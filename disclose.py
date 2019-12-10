@@ -232,21 +232,46 @@ class show:
         command="""show {} firewall policy {}
         """
         
-        if not full:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
-        elif full==True:
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
-        return storeprint(stdout, option)
+        if type(flt) is str:
+            command="""show firewall policy {}
+            """.format(flt)
+    
+            if not full:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+            elif full==True:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+            return storeprint(stdout, option)
+        
+        elif type(flt) is list:
+            listout=[]
+            for i in flt:
+                command="""show firewall policy {}
+                """.format(i)
+                #print(i)
+                if not full:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+                elif full==True:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+                
+                listout+=stdout
+            
+            return storeprint(listout, option)
 
-    def firewall_address(self, vdom=None, flt='', option='print'):
+    def firewall_address(self, vdom=None, flt='', option='print', full=None):
         precomm="""config vdom
         edit {}
         """.format(vdom)
+        
         if type(flt) is str:
             command="""show firewall address {}
             """.format(flt)
     
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+            if not full:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+            elif full==True:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
             return storeprint(stdout, option)
         elif type(flt) is list:
             listout=[]
@@ -254,39 +279,91 @@ class show:
                 command="""show firewall address {}
                 """.format(i)
                 #print(i)
-                stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+                
+                if not full:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+                elif full==True:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
                 listout+=stdout
             return storeprint(listout, option)
         
-    def firewall_vip(self, vdom=None, flt='', option='print'):
+    def firewall_vip(self, vdom=None, flt='', option='print', full=None):
         precomm="""config vdom
         edit {}
         """.format(vdom)
         command="""show firewall vip {}
         """.format(flt)
 
-        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        return storeprint(stdout, option)
+        if type(flt) is str:
+            command="""show firewall vip {}
+            """.format(flt)
+            
+            if not full:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+            elif full==True:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+            return storeprint(stdout, option)
+        elif type(flt) is list:
+            listout=[]
+            for i in flt:
+                command="""show firewall vip {}
+                """.format(i)
+                #print(i)
+                
+                if not full:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+                elif full==True:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+                listout+=stdout
+            
+            return storeprint(listout, option)
 
-    def firewall_group(self, vdom=None, flt='', option='print'):
+    def firewall_group(self, vdom=None, flt='', option='print', full=None):
         precomm="""config vdom
         edit {}
         """.format(vdom)
-        command="""show firewall addrgrp {}
-        """.format(flt)
 
-        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        return storeprint(stdout, option)
+        if type(flt) is str:
+            command="""show firewall addrgrp {}
+            """.format(flt)
+            
+            if not full:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+            elif full==True:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+            return storeprint(stdout, option)
+        elif type(flt) is list:
+            listout=[]
+            for i in flt:
+                command="""show firewall addrgrp {}
+                """.format(i)
+                #print(i)
+                
+                if not full:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+                elif full==True:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+                listout+=stdout
+            return storeprint(listout, option)
 
-    def user_local(self, vdom=None, flt='', option='print'):
+    def user_local(self, vdom=None, flt='', option='print', full=None):
         precomm="""config vdom
         edit {}
         """.format(vdom)
         if type(flt) is str:
             command="""show user local {}
             """.format(flt)
-
-            stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+            
+            if not full:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+            elif full==True:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
             return storeprint(stdout, option)
         elif type(flt) is list:
             listout=[]
@@ -294,19 +371,45 @@ class show:
                 command="""show user local {}
                 """.format(i)
                 #print(i)
-                stdout=vdomfunc(self.sshclient,vdom,precomm,command)
+                
+                if not full:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+                elif full==True:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
                 listout+=stdout
             return storeprint(listout, option)
 
-    def user_group(self, vdom=None, flt='', option='print'):
+    def user_group(self, vdom=None, flt='', option='print', full=None):
         precomm="""config vdom
         edit {}
         """.format(vdom)
-        command="""show user group {}
-        """.format(flt)
 
-        stdout=vdomfunc(self.sshclient,vdom,precomm,command)
-        return storeprint(stdout, option)
+        if type(flt) is str:
+            command="""show user group {}
+            """.format(flt)
+
+            
+            if not full:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+            elif full==True:
+                stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+            return storeprint(stdout, option)
+        elif type(flt) is list:
+            listout=[]
+            for i in flt:
+                command="""show user group {}
+                """.format(i)
+                #print(i)
+                
+                if not full:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('',flt))
+                elif full==True:
+                    stdout=vdomfunc(self.sshclient,vdom,precomm,command.format('full',flt))
+            
+                listout+=stdout
+            return storeprint(listout, option)
 
     def ssl_vpn_settings(self, vdom=None, flt='', option='print'):
         precomm="""config vdom
