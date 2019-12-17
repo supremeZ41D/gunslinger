@@ -556,6 +556,7 @@ class firewall_policy:
 
 class admin_user:
 
+    set_name=None
     set_accprofile=None
     set_vdom=None
     set_password=None
