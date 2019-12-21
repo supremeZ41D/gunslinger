@@ -17,12 +17,14 @@ def vdomval(sshclient, vdom):
 
     stdin,stdout,stderr=sshclient.exec_command(precomm+command)
 
-    if vdom==None:
-            raise RuntimeError('VDOM can\'t be NoneType')
-    else:
+    if not globval(sshclient) and not vdom:
+        raise RuntimeError('VDOM can\'t be NoneType')
+    elif not globval(sshclient) and vdom:
         for i in stdout.readlines():
             if re.match(r'.+(edit \"'+vdom+'\")',i, flags=0):
                 return True
+    elif globval(sshclient):
+        return False
 
 def adminval(sshclient, name):
     precomm="""config global
