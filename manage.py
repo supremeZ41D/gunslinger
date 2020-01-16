@@ -1,8 +1,7 @@
 import paramiko
 
-
 # It returns an SSHClient Paramiko object.
-def access(ip, port=22, username='obrito', password='Mathew:5'):
+def access(ip, port=22, username=None, password=None):
     sshclient= paramiko.SSHClient()
     sshclient.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
