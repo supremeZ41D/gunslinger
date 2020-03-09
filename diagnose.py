@@ -1,4 +1,5 @@
 from gunslinger import validation
+from gunslinger.disclose import storeprint, vdomfunc
 
 def commit(sshclient, paramlist):
     stdin,stdout,stderr=sshclient.exec_command('\n'.join(paramlist)+'\n')
@@ -7,22 +8,6 @@ def commit(sshclient, paramlist):
     print('SCRIPT PUSHED!')
     for i in stdout.readlines():
         print(i.strip('\n'))
-
-def storeprint(sshclient, paramlist, option):
-    stdin,stdout,stderr=sshclient.exec_command('\n'.join(paramlist)+'\n')
-    #print(stdin.readlines())
-    #print(stdout.readlines())
-    print('SCRIPT PUSHED!')
-    try:
-        if option=='print':
-            for i in stdout.readlines():
-                print(i.strip('\n'))
-        elif option=='store':
-            return stdout.readlines()
-        else:
-            print('No available option given!')
-    except (UnboundLocalError, TypeError):
-        pass
 
 class hardware_info:
 
@@ -49,6 +34,21 @@ class hardware_info:
             return storeprint(self.sshclient,paramlist,option)
         except:
             print('Incorrect VDOM/GLOBAL!')
+
+
+class sys_ha_checksum_cluster:
+    
+    def __init__(self, sshclient):
+        self.sshclient=sshclient
+    
+    def set(self, flt='',option='print'):
+        precomm="""config global
+        """
+        command="""diagnose sys ha checksum cluster
+        """
+        
+        stdout=vdomfunc(self.sshclient,'global', precomm, command)
+        return storeprint(stdout,option)
 
 class sys_session:
 
@@ -233,12 +233,12 @@ class auth_test:
         else:
             if not vdom:
                 if 'chap' in args or 'pap' in args or 'mschap' in args or 'mschap2' in args:
-                    paramlist=['diagnose test authserver {} {} {} {} {}'.format(method, arg[0], server_name, username, password)]
+                    paramlist=['diagnose test authserver {} {} {} {} {}'.format(method, args[0], server_name, username, password)]
                 else:
                     paramlist=['diagnose test authserver {} {} {} {}'.format(method, server_name, username, password)]
             elif validation.vdomval(self.sshclient,vdom):
                 if 'chap' in args or 'pap' in args or 'mschap' in args or 'mschap2' in args:
-                    paramlist=['config vdom','edit {}'.format(vdom),'diagnose test authserver {} {} {} {} {}'.format(method, arg[0], server_name, username, password)]
+                    paramlist=['config vdom','edit {}'.format(vdom),'diagnose test authserver {} {} {} {} {}'.format(method, args[0], server_name, username, password)]
                 else:
                     paramlist=['config vdom','edit {}'.format(vdom),'diagnose test authserver {} {} {} {}'.format(method, server_name, username, password)]
 

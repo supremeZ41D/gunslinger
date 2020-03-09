@@ -33,6 +33,18 @@ class get:
     def __init__(self, sshclient):
         self.sshclient=sshclient
 
+    def sys_ha_status(self, option='print'):
+        """Class function to list the information related to the FortiGate's get sys ha status command."""
+
+        precomm="""config global
+        """
+        command="""get sys ha status
+        """
+
+        stdout=vdomfunc(self.sshclient,'global', precomm, command)
+        return storeprint(stdout,option)
+        
+        
     def sys_stat(self, option='print'):
         """Class function to list the information related to the FortiGate's get sys stat command."""
 
