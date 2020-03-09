@@ -294,15 +294,14 @@ class fmg_device_list:
     def __init__(self, sshclient):
         self.sshclient=sshclient
 
-    def set(self, flt='list',option='print'):
+    def set(self, flt='',option='print'):
 
-        paramlist=['diagnose dvm device list {}'.format(flt)]
+        paramlist='diagnose dvm device list {}'.format(flt)
 
-        try:
-            return storeprint(self.sshclient,paramlist,option)
-        except:
-            print('Incorrect VDOM/GLOBAL!')
-
+        
+        stdout=vdomfunc(self.sshclient,None,None,paramlist)
+        return storeprint(stdout,option)
+        
 
 class faz_device_list:
     def __init__(self, sshclient):
@@ -312,10 +311,8 @@ class faz_device_list:
 
         paramlist=['diagnose dvm device list {}'.format(flt)]
 
-        try:
-            return storeprint(self.sshclient,paramlist,option)
-        except:
-            print('Incorrect VDOM/GLOBAL!')
+        stdout=vdomfunc(self.sshclient,None,None,paramlist)
+        return storeprint(stdout,option)
 
 
 class firewall_iprope:
