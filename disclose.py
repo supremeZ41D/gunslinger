@@ -77,6 +77,14 @@ class get:
         stdout=vdomfunc(self.sshclient,'global', precomm, command)
         return storeprint(stdout,option)
 
+    def sys_fortiguard(self, option='print'):
+        precomm="""config global
+        """
+        command="""get sys fortiguard
+        """
+
+        stdout=vdomfunc(self.sshclient,'global', precomm, command)
+        return storeprint(stdout,option)
 
     def sys_arp(self, vdom=None, flt='',option='print'):
         precomm="""config vdom
