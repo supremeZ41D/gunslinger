@@ -309,7 +309,7 @@ class faz_device_list:
 
     def set(self, flt='list',option='print'):
 
-        paramlist=['diagnose dvm device list {}'.format(flt)]
+        paramlist=['diagnose dvm device {}'.format(flt)]
 
         stdout=vdomfunc(self.sshclient,None,None,paramlist)
         return storeprint(stdout,option)

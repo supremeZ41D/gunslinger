@@ -612,6 +612,114 @@ class admin_user:
                 print('SOME PARAMETER(S) NOT FOUND!')
 
 
+class user_local:
+    
+    set_name=None
+    set_status='enable'
+    set_type='password'
+    set_password=None
+    
+    def __init__(self, sshclient):
+        self.sshclient=sshclient
+
+    def clear_all():
+
+        user_local.set_name=None
+        user_local.set_status=None
+        user_local.set_type=None
+        user_local.set_password=None
+    
+    def preview(self, action='set', vdom=None, option='edit'):
+
+        if not option:
+            print('Please enter \"edit\" or \"delete\"!')
+        else:
+            params= {
+                'status': user_local.set_status,
+                'type': user_local.set_type,
+                'passwd': user_local.set_password
+                }
+            
+            if option=='edit':
+                if not vdom:
+                    paramlist=['config user local','{} {}'.format(option,user_local.set_name)]
+                    if not validation.userlocval(self.sshclient,vdom,user_local.set_name):
+                        print('Local User {} will be created once committed.'.format(user_local.set_name))
+                        paramlist=paramfunc(params, paramlist, action)
+                    else:
+                        paramlist=paramfunc(params, paramlist, action)
+                elif validation.vdomval(self.sshclient,vdom):
+                    paramlist=['config vdom','edit {}'.format(vdom),'config user local','{} {}'.format(option,user_local.set_name)]
+                    if not validation.userlocval(self.sshclient,vdom,user_local.set_name):
+                        print('Local User {} will be created once committed.'.format(user_local.set_name))
+                        paramlist=paramfunc(params, paramlist, action)
+                    else:
+                        paramlist=paramfunc(params, paramlist, action)
+
+            elif option=='delete':
+                if not vdom:
+                    paramlist=['config user local','{} {}'.format(option,user_local.set_name)]
+                    paramlist=paramfunc(params, paramlist, action)
+                elif validation.vdomval(self.sshclient,vdom):
+                    paramlist=['config vdom','edit {}'.format(vdom),'config user local','{} {}'.format(option,user_local.set_name)]
+                    paramlist=paramfunc(params, paramlist, action)
+
+            try:
+                return paramlist
+            except:
+                print('SOME PARAMETER(S) NOT FOUND!')
+                
+class user_local_group:
+
+    set_name=None
+    set_member=None
+
+    def __init__(self, sshclient):
+        self.sshclient=sshclient
+
+    def clear_all():
+        
+        user_local_group.set_name=None
+        user_local_group.set_member=None
+
+    def preview(self, action='set', vdom=None, option='edit'):
+        if not user_local_group.set_name:
+            print('PLEASE ENTER AN NAME VALUE!')
+        else:
+            params= {
+                'member': user_local_group.set_member
+                }
+
+            if option=='edit':
+                if not vdom:
+                    paramlist=['config user group','{} {}'.format(option,user_local_group.set_name)]
+                    if not validation.grplocval(self.sshclient,vdom,user_local_group.set_name):
+                        print('User Group {} will be created once committed.'.format(user_local_group.set_name))
+                        paramlist=paramfunc(params, paramlist, action)
+                    else:
+                        paramlist=paramfunc(params, paramlist, action)
+                elif validation.vdomval(self.sshclient,vdom):
+                    paramlist=['config vdom','edit {}'.format(vdom),'config user group','{} {}'.format(option,user_local_group.set_name)]
+                    if not validation.addrgrpval(self.sshclient,vdom,user_local_group.set_name):
+                        print('User Group {} will be created once committed.'.format(user_local_group.set_name))
+                        paramlist=paramfunc(params, paramlist, action)
+                    else:
+                        paramlist=paramfunc(params, paramlist, action)
+
+            elif option=='delete':
+                if not vdom:
+                    paramlist=['config user group','{} {}'.format(option,user_local_group.set_name)]
+                    paramlist=paramfunc(params, paramlist, action)
+                elif validation.vdomval(self.sshclient,vdom):
+                    paramlist=['config vdom','edit {}'.format(vdom),'config user group','{} {}'.format(option,user_local_group.set_name)]
+                    paramlist=paramfunc(params, paramlist, action)
+
+            try:
+                return paramlist
+            except:
+                print('SOME PARAMETER(S) NOT FOUND!')
+
+
 class vpn_phase1:
 
     set_name=None

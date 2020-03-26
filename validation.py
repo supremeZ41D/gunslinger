@@ -134,6 +134,42 @@ def srvval(sshclient, vdom, name):
         if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
             return True
 
+def userlocval(sshclient, vdom, name):
+    precomm="""config vdom
+    edit {}
+    """.format(vdom)
+    command="""show user local
+    """
+
+    if not vdomval(sshclient,vdom):
+        stdin,stdout,stderr=sshclient.exec_command(command)
+    else:
+        stdin,stdout,stderr=sshclient.exec_command(precomm+command)
+
+    if name==None:
+        raise RuntimeError('NAME can\'t be NoneType')
+    for i in stdout.readlines():
+        if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
+            return True
+
+def grplocval(sshclient, vdom, name):
+    precomm="""config vdom
+    edit {}
+    """.format(vdom)
+    command="""show user group
+    """
+
+    if not vdomval(sshclient,vdom):
+        stdin,stdout,stderr=sshclient.exec_command(command)
+    else:
+        stdin,stdout,stderr=sshclient.exec_command(precomm+command)
+
+    if name==None:
+        raise RuntimeError('NAME can\'t be NoneType')
+    for i in stdout.readlines():
+        if re.match(r'.+(edit \"'+name+'\")',i, flags=0):
+            return True
+
 def phase1val(sshclient, vdom, name):
     precomm="""config vdom
     edit {}
