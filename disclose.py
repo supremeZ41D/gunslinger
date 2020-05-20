@@ -141,6 +141,15 @@ class get:
 
         stdout=vdomfunc(self.sshclient,vdom,precomm,command)
         return storeprint(stdout,option)
+    
+    def log_forticloud(self, option='print'):
+        precomm="""config global
+        """
+        command="""get log fortiguard setting
+        """
+        
+        stdout=vdomfunc(self.sshclient,'global',precomm,command)
+        return storeprint(stdout,option)
 
 class get_config:
     def __init__(self, sshclient):
