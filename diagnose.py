@@ -354,3 +354,17 @@ class exec_dhcp_clear:
             commit(self.sshclient,paramlist)
         except:
             print('Incorrect VDOM/GLOBAL!')
+            
+class crashlog_read:
+    
+    def __init__(self, sshclient):
+        self.sshclient=sshclient
+    
+    def set(self, flt='',option='print'):
+        precomm="""config global
+        """
+        command="""diagnose deb crashlog read {}
+        """.format(flt)
+        
+        stdout=vdomfunc(self.sshclient,'global', precomm, command)
+        return storeprint(stdout,option)
