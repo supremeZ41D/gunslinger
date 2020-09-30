@@ -1,0 +1,28 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config vpn ipsec phase1-interface
+{%- for ipsecph1 in dictvar%}
+edit {{ipsecph1.name}}
+{%- if ipsecph1.action=='create'%}
+set interface {{ipsecph1.interface}}
+set keylife {{ipsecph1.keylife}}
+set ike-version {{ipsecph1.ike}}
+set peertype any
+set proposal {{ipsecph1.enc}}-{{ipsecph1.hash}}
+set comments {{ipsecph1.comments}}
+set dhgrp {{ipsecph1.dhgrp}}
+set remote-gw {{ipsecph1.gw}}
+set psksecret {{ipsecph1.psk}}
+{%- elif ipsecph1.action=='adjust'%}
+{%- if ipsecph1.interface%}
+set interface {{ipsecph1.interface}}
+{%- endif%}
+{%- endif%}
+next
+{%- endfor%}
+end
+{%- if dictvar[0].vdom%}
+end
+{%- endif%}

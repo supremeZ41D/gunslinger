@@ -1,0 +1,36 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config router static
+{%- for stroute in dictvar%}
+{%- if stroute.id%}
+edit {{stroute.id}}
+{%- else%}
+edit 0
+{%- endif%}
+{%- if stroute.dst%}
+set dst {{stroute.dst}}
+{%- else%}
+set dst 0.0.0.0/0
+{%- endif%}
+{%- if stroute.distance%}
+set distance {{stroute.distance}}
+{%- else%}
+set distance 10
+{%- endif%}
+{%- if stroute.comment%}
+set comment {{stroute.comment}}
+{%- endif%}
+{%- if stroute.option!='vpn'%}
+set gateway {{stroute.gw}}
+{%- endif%}
+{%- if stroute.status=='disable'%}
+set status {{stroute.status}}
+{%- else%}
+set status enable
+{%- endif%}
+set device {{stroute.device}}
+{%- endfor%}
+next
+end

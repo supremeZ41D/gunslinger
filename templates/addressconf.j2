@@ -1,0 +1,20 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config firewall address
+{%- for address in dictvar%}
+edit {{address.name}}
+{%- if address.type=='fqdn'%}
+set type {{address.type}}
+set fqdn {{address.value}}
+{%- else%}
+set type "ipmask"
+set subnet {{address.value}}
+{%- endif%}
+{%- if address.comment%}
+set comment {{address.comment}}
+{%- endif%}
+next
+{%- endfor%}
+end

@@ -1,0 +1,16 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config firewall ippool
+{%- for ippool in dictvar%}
+edit {{ippool.name}}
+set type {{ippool.type}}
+set startip {{ippool.startip}}
+set endip {{ippool.endip}}
+next
+{%- endfor%}
+end
+{%- if dictvar[0].vdom%}
+end
+{%- endif%}

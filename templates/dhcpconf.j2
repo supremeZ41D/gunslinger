@@ -1,0 +1,16 @@
+config sys dhcp server
+edit 0
+set dns-service default
+set ntp-service default
+set default-gateway {{interface.ip}}
+set netmask {{interface.mask}}
+set interface {{interface.name}}
+config ip-range
+edit 0
+set start-ip {{interface.startip}}
+set end-ip {{interface.endip}}
+next
+end
+set timezone-option default
+next
+end

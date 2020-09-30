@@ -1,0 +1,16 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config firewall addrgrp
+{%- for addrgrp in dictvar%}
+edit {{addrgrp.name}}
+{%- if addrgrp.member|length >= 1%}
+set member {{addrgrp.member|join(' ')}}
+{%- endif%}
+{%- if addrgrp.comment%}
+set comment {{addrgrp.comment}}
+{%- endif%}
+next
+{%- endfor%}
+end

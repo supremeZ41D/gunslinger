@@ -1,0 +1,17 @@
+{%- if dictvar[0].vdom%}
+config global
+{%- endif%}
+config system interface
+edit {{dictvar[0].name}}
+set vdom {{dictvar[0].vdom}}
+set ip {{dictvar[0].ip+' '+dictvar[0].mask}}
+{%- if dictvar[0].allowaccess|length >= 1%}
+set allowaccess {{dictvar[0].allowaccess|join(' ')}}
+{%- endif%}
+set alias {{dictvar[0].alias}}
+set role {{dictvar[0].role}}
+set interface {{dictvar[0].physical}}
+set vlanid {{dictvar[0].vlanid}}
+next
+end
+end

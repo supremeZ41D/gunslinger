@@ -1,0 +1,8 @@
+Hello!
+{%for fsname in name%}
+{%if fsname.first=='Said'%}
+My name is {{fsname.first}} {{fsname.last}}
+{%else%}
+My wife's name is {{fsname.first}} {{fsname.last}}
+{%endif%}
+{%endfor%}

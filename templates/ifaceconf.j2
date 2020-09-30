@@ -1,0 +1,34 @@
+{%- if dictvar[0].vdom%}
+config global
+{%- endif%}
+config system interface
+{%- for iface in dictvar%}
+edit {{iface.name}}
+{%- if iface.vdom%}
+set vdom {{iface.vdom}}
+{%- else%}
+set vdom root
+{%- endif%}
+{%- if iface.type%}
+set type {{iface.type}}
+{%- else%}
+set type vlan
+set interface {{iface.physical}}
+set vlanid {{iface.vlanid}}
+{%- endif%}
+set ip {{iface.ip+' '+iface.mask}}
+{%- if iface.allowaccess|length >= 1%}
+set allowaccess {{iface.allowaccess|join(' ')}}
+{%- endif%}
+set alias {{iface.alias}}
+{%- if iface.role%} 
+set role {{iface.role}}
+{%- else%}
+set role undefined
+{%- endif%}
+next
+{%- endfor%}
+end
+{%- if dictvar[0].vdom%}
+end
+{%- endif%}

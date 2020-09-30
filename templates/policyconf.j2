@@ -1,0 +1,71 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config firewall policy
+{%- for policy in dictvar%}
+{%- if policy.action=='create'%}
+{%- if policy.id%}
+edit {{policy.id}}
+{%- else%}
+edit 0
+{%- endif%}
+{%- if policy.name%}
+set name {{policy.name}}
+{%- endif%}
+{%- if policy.srcintf%}
+set srcintf {{policy.srcintf}}
+{%- else%}
+set srcintf "any"
+{%- endif%}
+{%- if policy.dstintf%}
+set dstintf {{policy.dstintf}}
+{%- else%}
+set dstintf "any"
+{%- endif%}
+{%- if policy.srcaddr%}
+{%- if policy.srcaddr|length >= 1 and policy.srcaddr is not string%}
+set srcaddr {{policy.srcaddr|join(' ')}}
+{%- else%}
+set srcaddr {{policy.srcaddr}}
+{%- endif%}
+{%- else%}
+set srcaddr "all"
+{%- endif%}
+{%- if policy.dstaddr%}
+{%- if policy.dstaddr|length >= 1 and policy.dstaddr is not string%}
+set dstaddr {{policy.dstaddr|join(' ')}}
+{%- else%}
+set dstaddr {{policy.dstaddr}}
+{%- endif%}
+{%- else%}
+set dstaddr "all"
+{%- endif%}
+set action accept
+set schedule "always"
+set service "ALL"
+{%- if policy.nat%}
+set nat enable
+{%- if policy.ippool%}
+set ippool enable
+set poolname {{policy.ippool}}
+{%- endif%}
+{%- else%}
+set nat disable
+{%- endif%}
+{%- elif policy.action=='adjust'%}
+edit {{policy.id}}
+{%- if policy.dstintf%}
+set dstintf {{policy.dstintf}}
+{%- endif%}
+{%- if policy.nat%}
+set nat enable
+{%- if policy.ippool%}
+set ippool enable
+set poolname {{policy.ippool}}
+{%- endif%}
+{%- endif%}
+{%- endif%}
+next
+{%- endfor%}
+end

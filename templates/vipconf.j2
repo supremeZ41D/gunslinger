@@ -1,0 +1,17 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config firewall vip
+{%- for vip in dictvar%}
+edit {{vip.name}}
+set extip {{vip.extip}}
+{%- if vip.extintf%}
+set extintf {{vip.extintf}}
+{%- else%}
+set extintf "any"
+{%- endif%}
+set mappedip {{vip.mappedip}}
+next
+{%- endfor%}
+end

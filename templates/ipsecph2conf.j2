@@ -1,0 +1,17 @@
+{%- if dictvar[0].vdom%}
+config vdom
+edit {{dictvar[0].vdom}}
+{%- endif%}
+config vpn ipsec phase2-interface
+{%- for ipsecph2 in dictvar%}
+edit {{ipsecph2.name}}
+set phase1name {{ipsecph2.phase1}}
+set proposal {{ipsecph2.enc}}-{{ipsecph2.hash}}
+set dhgrp {{ipsecph2.dhgrp}}
+set keepalive enable
+set keylifeseconds {{ipsecph2.keylife}}
+set src-subnet {{ipsecph2.localdom}}
+set dst-subnet {{ipsecph2.remotedom}}
+next
+{%- endfor%}
+end
