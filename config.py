@@ -25,7 +25,7 @@ class scripts:
         with open(self.path) as file:
             sjinja=yaml.full_load(file)
         
-        env=Environment(loader=FileSystemLoader('..'))
+        env=Environment(loader=FileSystemLoader('.'))
         for module in sjinja['global']['modules']:
             tempvar=env.get_template("./templates/{}conf.j2".format(module))
             tempconf=tempvar.render(dictvar=sjinja['{}'.format(module)])
