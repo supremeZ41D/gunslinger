@@ -1,5 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 import yaml
+import os
 
 
 class scripts:
@@ -16,6 +17,14 @@ class scripts:
         txfile.close()
     
     def fwscript_yml(self):
+        dirtext=' '.join(os.listdir('.'))
+        
+        if 'templates' not in dirtext:
+            os.mkdir('templates')
+
+        if 'config' not in dirtext:
+            os.mkdir('config')
+
         try:
             with open('./config/config_file.txt','w') as config:
                 config.truncate(0)
