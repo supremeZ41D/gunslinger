@@ -17,7 +17,7 @@ class scripts:
     
     def fwscript_yml(self):
         try:
-            with open('../config/config_file.txt','w') as config:
+            with open('./config/config_file.txt','w') as config:
                 config.truncate(0)
         except:
             pass
@@ -27,7 +27,7 @@ class scripts:
         
         env=Environment(loader=FileSystemLoader('..'))
         for module in sjinja['global']['modules']:
-            tempvar=env.get_template("templates/{}conf.j2".format(module))
+            tempvar=env.get_template("./templates/{}conf.j2".format(module))
             tempconf=tempvar.render(dictvar=sjinja['{}'.format(module)])
             print(tempconf)
             with open('../config/config_file.txt','a') as config:
@@ -35,7 +35,7 @@ class scripts:
         
         confirm=input('*****Einverstanden?(y/n): ')
         if confirm=='yes':
-            with open('../config/config_file.txt','r') as config:
+            with open('./config/config_file.txt','r') as config:
                 script=config.read()
             
             stdin,stdout,stderr=self.sshclient.exec_command(script)
