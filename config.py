@@ -18,7 +18,7 @@ class scripts:
         txfile.close()
     
     def fwscript_yml(self):
-        gunpath=gunslinger.__path__
+        gunpath=gunslinger.__path__[0]
                 
         try:
             with open(gunpath+'config/config_file.txt','w') as config:
