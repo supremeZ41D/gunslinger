@@ -18,6 +18,8 @@ class scripts:
         txfile.close()
     
     def fwscript_yml(self):
+        stdin,stdout,stderr=None,None,None
+        
         gunpath=gunslinger.__path__[0]
                 
         try:
