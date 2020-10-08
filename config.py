@@ -1,13 +1,43 @@
 from jinja2 import Environment, FileSystemLoader
 import yaml
-from gunslinger.manage import access, close
-from getpass import getpass
-from gunslinger import validation
 
-def fwscript_txt(sshclient, path='C:/Users/omar.brito/Documents/Python_Security_Exercises/Plantilla SOC 17-10-2018.txt'):
-    txfile=open(path,'r')
-    txlist=txfile.readlines()
-    stdin,stdout,stderr=sshclient.exec_command(''.join(txlist))
-    print('SCRIPT PUSHED!')
-    txfile.close()
 
+class scripts:
+    
+    def __init__(self,sshclient,path):
+        self.sshclient=sshclient
+        self.path=path
+
+    def fwscript_txt(self):
+        txfile=open(self.path,'r')
+        txlist=txfile.readlines()
+        stdin,stdout,stderr=self.sshclient.exec_command(''.join(txlist))
+        print('SCRIPT PUSHED!')
+        txfile.close()
+    
+    def fwscript_yml(self):
+        try:
+            with open('../config/config_file.txt','w') as config:
+                config.truncate(0)
+        except:
+            pass
+        
+        with open(self.path) as file:
+            sjinja=yaml.full_load(file)
+        
+        env=Environment(loader=FileSystemLoader('..'))
+        for module in sjinja['global']['modules']:
+            tempvar=env.get_template("templates/{}conf.j2".format(module))
+            tempconf=tempvar.render(dictvar=sjinja['{}'.format(module)])
+            print(tempconf)
+            with open('../config/config_file.txt','a') as config:
+                config.write(tempconf)
+        
+        confirm=input('*****Einverstanden?(y/n): ')
+        if confirm=='yes':
+            with open('../config/config_file.txt','r') as config:
+                script=config.read()
+            
+            stdin,stdout,stderr=self.sshclient.exec_command(script)
+        
+        return stdin,stdout,stderr
