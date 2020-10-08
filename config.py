@@ -21,7 +21,7 @@ class scripts:
         gunpath=gunslinger.__path__
                 
         try:
-            with open(gunpath+'/config_file.txt','w') as config:
+            with open(gunpath+'config/config_file.txt','w') as config:
                 config.truncate(0)
         except:
             pass
@@ -31,7 +31,7 @@ class scripts:
         
         env=Environment(loader=FileSystemLoader(gunpath))
         for module in sjinja['global']['modules']:
-            tempvar=env.get_template("./templates/{}conf.j2".format(module))
+            tempvar=env.get_template("templates/{}conf.j2".format(module))
             tempconf=tempvar.render(dictvar=sjinja['{}'.format(module)])
             print(tempconf)
             with open(gunpath+'/config/config_file.txt','a') as config:
