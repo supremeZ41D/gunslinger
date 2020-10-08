@@ -40,7 +40,7 @@ class scripts:
                 config.write(tempconf)
         
         confirm=input('*****Einverstanden?(y/n): ')
-        if confirm=='yes':
+        if confirm=='y':
             with open(gunpath+'/config/config_file.txt','r') as config:
                 script=config.read()
             
