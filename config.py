@@ -30,7 +30,7 @@ class scripts:
             tempvar=env.get_template("./templates/{}conf.j2".format(module))
             tempconf=tempvar.render(dictvar=sjinja['{}'.format(module)])
             print(tempconf)
-            with open('../config/config_file.txt','a') as config:
+            with open('./config/config_file.txt','a') as config:
                 config.write(tempconf)
         
         confirm=input('*****Einverstanden?(y/n): ')
