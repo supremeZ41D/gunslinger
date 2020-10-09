@@ -22,9 +22,10 @@ class scripts:
         
         gunpath=gunslinger.__path__[0]
                 
-        for dirs in os.listdir():
-            if 'config' not in dirs:
-                os.mkdir('config')
+        try:
+            os.mkdir('config')
+        except FileExistsError:
+            pass
         
         try:
             with open(gunpath+'config/config_file.txt','w') as config:
