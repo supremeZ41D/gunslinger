@@ -1,7 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 import yaml
-import sys
 import gunslinger
+import os
 
 
 class scripts:
@@ -22,6 +22,10 @@ class scripts:
         
         gunpath=gunslinger.__path__[0]
                 
+        for dirs in os.listdir():
+            if 'config' not in dirs:
+                os.mkdir('config')
+        
         try:
             with open(gunpath+'config/config_file.txt','w') as config:
                 config.truncate(0)
