@@ -1,0 +1,623 @@
+
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_SiteFW
+set interface port10
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes256-sha512
+set comments Test_VPN
+set dhgrp 14
+set remote-gw 192.168.2.1
+set psksecret HkTZZMbR549eG5W6j5mRkN
+next
+end
+config vpn ipsec phase2-interface
+edit to_SiteFW_ph2
+set phase1name to_SiteFW
+set proposal aes256-sha512
+set dhgrp 14
+set keepalive enable
+set keylifeseconds 28800
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit Site_172.30.1.0/24
+set type "ipmask"
+set subnet 172.30.1.0/24
+set comment Test_VPN
+next
+end
+config router static
+edit 0
+set dst 172.30.1.0/24
+set distance 10
+set comment Test_VPN
+set status enable
+set device to_SiteFW
+next
+end
+config vpn ipsec phase1-interface
+edit to_MSSP
+set interface wan2
+set keylife 28800
+set ike-version 1
+set peertype any
+set proposal aes128-sha256
+set comments MSSP_VPN
+set dhgrp 5
+set remote-gw 69.79.32.18
+set psksecret m@2syg4s
+next
+end
+config vpn ipsec phase2-interface
+edit to_MSSP_ph2
+set phase1name to_MSSP
+set proposal aes128-sha256
+set dhgrp 5
+set keepalive enable
+set keylifeseconds 3600
+set src-subnet 0.0.0.0/0
+set dst-subnet 0.0.0.0/0
+next
+end
+config firewall address
+edit MSSP_10.242.4.240/28
+set type "ipmask"
+set subnet 10.242.4.240/28
+set comment MSSP_VPN
+next
+end
+config router static
+edit 0
+set dst 10.242.4.240/28
+set distance 10
+set comment MSSP_VPN
+set status enable
+set device to_MSSP
+next
+end
+config firewall address
+edit s048.cloud.kaspersky.com:8080
+set type fqdn
+set fqdn s048.cloud.kaspersky.com
+next
+end
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
+config vdom
+edit root
+config firewall address
+edit s048.cloud.kaspersky.com:8080
+set type fqdn
+set fqdn s048.cloud.kaspersky.com
+next
+end
+config vdom
+edit root
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
+config vdom
+edit B_Xpress
+config firewall address
+edit s048.cloud.kaspersky.com:8080
+set type fqdn
+set fqdn s048.cloud.kaspersky.com
+next
+end
+config vdom
+edit B_Xpress
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
+config vdom
+edit B_Xpress
+config firewall address
+edit s048.cloud.kaspersky.com:8080
+set type fqdn
+set fqdn s048.cloud.kaspersky.com
+next
+end
+config vdom
+edit B_Xpress
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
+config vdom
+edit B_Xpress
+config firewall address
+edit s048.cloud.kaspersky.com:8080
+set type fqdn
+set fqdn s048.cloud.kaspersky.com
+next
+end
+config vdom
+edit B_Xpress
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
