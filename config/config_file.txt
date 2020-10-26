@@ -621,3 +621,58 @@ set service "ALL"
 set nat enable
 next
 end
+config vdom
+edit B_Xpress
+config firewall address
+end
+end
+config vdom
+edit B_Xpress
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
+end
+config firewall address
+end
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
+config firewall address
+edit s048.cloud.kaspersky.com:8080
+set type fqdn
+set fqdn s048.cloud.kaspersky.com
+next
+end
+config firewall policy
+edit 0
+set name To_Cloud_Kaspersky
+set srcintf "any"
+set dstintf "any"
+set srcaddr "all"
+set dstaddr s048.cloud.kaspersky.com:8080
+set action accept
+set schedule "always"
+set service "ALL"
+set nat enable
+next
+end
