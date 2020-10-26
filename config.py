@@ -28,7 +28,7 @@ class scripts:
             pass
         
         try:
-            with open(gunpath+'config/config_file.txt','w') as config:
+            with open('./config/config_file.txt','w') as config:
                 config.truncate(0)
         except:
             pass
@@ -41,7 +41,7 @@ class scripts:
             tempvar=env.get_template("templates/{}conf.j2".format(module))
             tempconf=tempvar.render(dictvar=sjinja['{}'.format(module)])
             print(tempconf)
-            with open(gunpath+'/config/config_file.txt','w') as config:
+            with open('./config/config_file.txt','w') as config:
                 config.write(tempconf)
         
         confirm=input('*****Einverstanden?(y/n): ')
