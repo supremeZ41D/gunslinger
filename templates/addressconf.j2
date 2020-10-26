@@ -4,6 +4,7 @@ edit {{dictvar[0].vdom}}
 {%- endif%}
 config firewall address
 {%- for address in dictvar%}
+{%- if address.action=='create'%}
 edit {{address.name}}
 {%- if address.type=='fqdn'%}
 set type {{address.type}}
@@ -18,3 +19,6 @@ set comment {{address.comment}}
 next
 {%- endfor%}
 end
+{%- if dictvar[0].vdom%}
+end
+{%- endif%}

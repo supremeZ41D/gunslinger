@@ -69,3 +69,6 @@ set poolname {{policy.ippool}}
 next
 {%- endfor%}
 end
+{%- if dictvar[0].vdom%}
+end
+{%- endif%}
